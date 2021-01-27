@@ -33,6 +33,7 @@ function addTodo() {
     todoDate.value = "";
 
     //Create Edit button
+
     const editButton = document.createElement("button");
     editButton.innerHTML = `<div class="btn fa fa-edit" onclick="editTask(${index})">Edit Task</div>`;
     editButton.classList.add("edit-btn");
@@ -135,7 +136,7 @@ function editTask(index) {
     todoInput.value = todos[index];
     btnAddtask.style.display = "none";
     btnSavetask.style.display = "block";
-    popupOpen();
+    // popupOpen();
 }
 let btnSavetask = document.getElementById("btnSavetask");
 btnSavetask.addEventListener("click", function() {
@@ -146,17 +147,9 @@ btnSavetask.addEventListener("click", function() {
     let saveindex = document.getElementById("saveIndex").value;
     todos[saveindex] = todoInput.value;
     localStorage.setItem("todos", JSON.stringify(todos));
-    saveIndex.value = "";
+    todoInput.value = "";
     // getTodos();
 })
-
-// function popupOpen() {
-//     document.getElementById("popup").addEventListener("click", function() {
-//         document.getElementsByClassName(".overlay").style.display = "flex";
-//     })
-// }
-
-
 
 function saveLocalTodos(todo) {
     let todos;
@@ -218,6 +211,7 @@ function getTodos(t = []) {
         todoDate.value = "";
 
         //Create Edit Button
+
         const editButton = document.createElement("button");
         editButton.innerHTML = `<div class="fa fa-edit" onclick="editTask(${index})">Edit Task</div>`;
         editButton.classList.add("edit-btn");
@@ -253,7 +247,6 @@ function getDifference(date1, date2) {
     $date2 = new Date(date2)
 
     return Math.ceil(Math.abs($date2 - $date1) / (1000 * 60 * 60 * 24))
-
 }
 
 
@@ -288,7 +281,6 @@ function filter_datewise() {
             }
         })
     })
-
     getTodos(todoFindList)
 }
 
