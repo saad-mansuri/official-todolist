@@ -1,0 +1,307 @@
+h1 {
+    text-align: center;
+    color: #000000;
+    margin: 10px 0px 0px;
+}
+
+.todo-input {
+    margin: 17px;
+    width: 355px;
+    height: 30px;
+    padding: 25px;
+    border-radius: 5px;
+    border: 1.5px solid;
+    border-radius: 5px;
+    padding-left: 10px;
+    /* box-shadow: 4px 3px 5px #ccc;*/
+}
+
+label {
+    font-size: 20px;
+}
+
+.dateInput {
+    padding: 10px;
+    font-size: 15px;
+}
+
+.todo-date {
+    margin: 17px;
+    width: 355px;
+    height: 30px;
+    padding: 25px;
+    border-radius: 5px;
+    border: 1.5px solid;
+    border-radius: 5px;
+    padding-left: 10px;
+    /* box-shadow: 4px 3px 5px #ccc;*/
+}
+
+.todo-button {
+    width: 125px;
+    height: 100%;
+    color: #fff;
+    background: #993CF3;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.todo-button:hover {
+    background: #7a30c2;
+    box-shadow: 4px 3px 5px #ccc;
+}
+
+.todo-inner {
+    margin-top: 30px;
+    width: 100%;
+    float: left;
+    padding: 10px 0px;
+    box-shadow: 3px 3px 9px #ccc;
+    background: #F5F5F5;
+}
+
+.todo-inner h2 {
+    text-align: center;
+    font-size: 30px;
+    margin: 20px 0px;
+}
+
+.select {
+    width: 100%;
+    margin: 1rem 1rem 1rem 10rem;
+    /* position: relative; */
+    /* overflow: hidden; */
+}
+
+select {
+    color: #ff6f47;
+    font-family: "Poppins", sans-serif;
+    cursor: pointer;
+    width: 100%;
+    border: 2px solid;
+}
+
+.filter-todo {
+    padding: .5rem;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.combolisttodo {
+    margin-top: 20px;
+}
+
+.todo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo-list {
+    width: 100%;
+    list-style: none;
+}
+
+.todo {
+    border-radius: 10px;
+    width: 94%;
+    margin: 0.5rem;
+    background: white;
+    font-size: 1.5rem;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.1s ease-in;
+    /* transition: all; */
+}
+
+
+/* .filter-todo {
+    padding: 1rem; 
+}*/
+
+.todo li {
+    flex: 1;
+}
+
+.trash-btn,
+.complete-btn,
+.important-btn {
+    background: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    padding: .5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.edit-btn {
+    background-color: #993CF3;
+    color: white;
+    border: none;
+    padding: .5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 5px;
+    border-radius: 10px;
+}
+
+.important-btn {
+    background: #ff6f47;
+}
+
+.complete-btn {
+    background: rgb(11, 212, 162);
+}
+
+.todo-item {
+    padding: 0rem 0.5rem;
+}
+
+.fa-trash,
+.fa-check,
+.fa-exclamation-triangle {
+    pointer-events: none;
+}
+
+.fall {
+    /* transform: translateY(10rem) rotateZ(20deg); */
+    opacity: 0;
+}
+
+.completed {
+    text-decoration: line-through;
+    /* opacity: 0.5; */
+    color: rgb(11, 212, 162);
+}
+
+.important {
+    /* text-decoration: line-through; */
+    /* opacity: 0.5; */
+    color: red;
+    text-decoration: line-through;
+    /* color: #F5F5F5; */
+}
+
+.cust-nav {
+    height: 65px;
+}
+
+.cust-nav a {
+    padding: 0;
+}
+
+.btnCreate {
+    width: 150px;
+    margin-left: 140px;
+    margin-top: 14px;
+    /* height: 100%; */
+    color: #fff;
+    background: #993CF3;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.box {
+    /* width: 57%; */
+    margin: -15px 0px 0px 120px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 35px;
+    border: 2px solid #fff;
+    border-radius: 20px/50px;
+    background-clip: padding-box;
+    text-align: center;
+}
+
+.fa-plus {
+    font-size: 20px;
+    margin: 5px 10px 0px 10px;
+}
+
+.button {
+    font-size: 1em;
+    padding: 10px;
+    color: #000;
+    border: 2px solid #06D85F;
+    border-radius: 20px/50px;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease-out;
+    background: #06D85F;
+}
+
+.button:hover {
+    background-color: transparent;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    transition: opacity 500ms;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.overlay:target {
+    visibility: visible;
+    opacity: 1;
+}
+
+.popup {
+    height: 400px;
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 5px;
+    width: 31%;
+    position: relative;
+    transition: all ease-in-out;
+}
+
+.popup h2 {
+    margin-top: 0;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
+    position: absolute;
+    top: 2px;
+    right: 11px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+}
+
+.popup .close:hover {
+    color: #06D85F;
+}
+
+.popup .content {
+    max-height: 30%;
+    overflow: auto;
+}
+
+@media screen and (max-width: 700px) {
+    .box {
+        width: 70%;
+    }
+    .popup {
+        width: 70%;
+    }
+}
+
+.inputPopup {
+    margin-top: 40px;
+}
