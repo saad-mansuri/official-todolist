@@ -4,6 +4,18 @@ h1 {
     margin: 10px 0px 0px;
 }
 
+.your-task-h2 {
+    margin: 18px 20px;
+}
+
+
+/* .form-tag {
+    margin-right: 50px;
+} */
+
+
+/* .showData {} */
+
 .todo-input {
     margin: 17px;
     width: 355px;
@@ -69,9 +81,9 @@ label {
 
 .select {
     width: 100%;
-    margin: 1rem 1rem 1rem 10rem;
-    /* position: relative; */
-    /* overflow: hidden; */
+    margin: 1rem 1rem 1rem 5rem;
+    position: relative;
+    overflow: hidden;
 }
 
 select {
@@ -105,8 +117,8 @@ select {
 
 .todo {
     border-radius: 10px;
-    width: 94%;
-    margin: 0.5rem;
+    width: 110%;
+    margin: 12px 0px 0px -3rem;
     background: white;
     font-size: 1.5rem;
     color: black;
@@ -128,7 +140,8 @@ select {
 
 .trash-btn,
 .complete-btn,
-.important-btn {
+.important-btn,
+.edit-btn {
     background: rgba(0, 0, 0, 0.4);
     color: white;
     border: none;
@@ -141,13 +154,13 @@ select {
 
 .edit-btn {
     background-color: #993CF3;
-    color: white;
+    /* color: white;
     border: none;
-    padding: .5rem;
+    padding: .4rem;
     cursor: pointer;
     font-size: 1rem;
     margin: 5px;
-    border-radius: 10px;
+    border-radius: 10px; */
 }
 
 .important-btn {
@@ -180,11 +193,9 @@ select {
 }
 
 .important {
-    /* text-decoration: line-through; */
     /* opacity: 0.5; */
     color: red;
     text-decoration: line-through;
-    /* color: #F5F5F5; */
 }
 
 .cust-nav {
@@ -209,10 +220,10 @@ select {
 
 .box {
     /* width: 57%; */
-    margin: -15px 0px 0px 120px;
-    background: rgba(255, 255, 255, 0.2);
+    margin: -15px 0px 0px 5rem;
+    /* background: rgba(255, 255, 255, 0.2); */
     padding: 35px;
-    border: 2px solid #fff;
+    /* border: 2px solid #fff; */
     border-radius: 20px/50px;
     background-clip: padding-box;
     text-align: center;

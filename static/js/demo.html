@@ -1,26 +1,74 @@
-<!-- <script>
-    // const fname = "saad";
-    // fname = "mansuri";
-    // console.log(fname);
-    for (let i = 0; i < 10; i++)
-        document.write(i, " Hello World", "<br>");
+<!-- <input type="text" id="txtName">
+<button id="btnSubmit">Submit</button>
+<div id="taskDisp"></div>
+<script>
+    let taskName = document.getElementById("txtName");
+    let addTask = document.getElementById("btnSubmit");
+    let taskDisp = document.getElementById("taskDisp");
+
+    var myTask = []
+    addTask.addEventListener("click", function() {
+        var taskDict = {}
+        taskDict['Task Name'] = taskName.value
+        myTask.push(taskDict)
+        console.log(myTask)
+        showTask()
+    })
+
+    function showTask() {
+        taskDisp.innerHTML = ""
+        let id = 1
+        myTask.forEach(function(index) {
+            // console.log(index)
+            taskDisp.innerHTML += id + " " + index['Task Name'] + "<br>"
+
+            id++
+        });
+    }
 </script> -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <script>
+        function setCookie(cname, cvalue, exdays) {
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toGMTString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+
+        function checkCookie() {
+            var user = getCookie("username");
+            if (user != "") {
+                alert("Welcome again " + user);
+            } else {
+                user = prompt("Please enter your name:", "");
+                if (user != "" && user != null) {
+                    setCookie("username", user, 30);
+                }
+            }
+        }
+    </script>
 </head>
 
-<body>
-    <h1 id="one" class="one1">Welcome</h1>
-</body>
+<body onload="checkCookie()"></body>
 
 </html>
-<script>
-    let text = document.getElementsByClassName("one1").innerHTML;
-    // var text = document.getElementById("one").innerHTML;
-    alert("the first page is :" + text)
-</script>

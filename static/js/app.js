@@ -1,41 +1,81 @@
-//Select DOM
-const todoInput = document.querySelector(".todo-input");
-const todoDate = document.querySelector(".todo-date");
-const todoButton = document.querySelector(".todo-button");
+let taskName = document.getElementById("txtName")
+let taskDate = document.getElementById("txtDate")
+let addTask = document.getElementById("btnAddtask")
+let dispTask = document.getElementById("displayTask")
 const todoList = document.querySelector(".todo-list");
 const filterOption = document.querySelector(".filter-todo");
 const search_BTN = document.getElementById('searchTodo_');
+let tasks = [];
 
-//Event Listeners
+
 document.addEventListener("DOMContentLoaded", getTodos);
-todoButton.addEventListener("click", addTodo);
+addTask.addEventListener("click", addTodo)
 todoList.addEventListener("click", deleteTodo);
 filterOption.addEventListener("click", filterTodo);
 
 
-//Functions
+
+function init() {
+    // debugger;
+    tasks = getCookie("todoList");
+    // debugger;
+    if (typeof tasks != "" && tasks != "") {
+        tasks = JSON.parse(tasks);
+    } else {
+        tasks = [];
+    }
+}
+init()
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires=" + d.toGMTString();
+    document.cookie = cname + "=" + JSON.stringify(cvalue) + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+
 function addTodo() {
 
-    //Create todo div
-    const todoDiv = document.createElement("div");
-    todoDiv.classList.add("todo");
-    //Create list
-    const newTodo = document.createElement("li");
-    newTodo.innerText = todoInput.value + " " + todoDate.value;
+    const todoDiv = document.createElement("div")
+    todoDiv.classList.add("todo")
 
-    //Save to local - do this last
-    saveLocalTodos(todoInput.value + " " + todoDate.value);
+    const newTodo = document.createElement("li")
+    newTodo.innerHTML = taskName.value + " " + taskDate.value;
+    var index = tasks.length;
+    tasks.push({ "id": index, "name": taskName.value, "date": taskDate.value });
+    console.log(tasks)
+
+    setCookie('todoList', tasks, 1);
     // saveLocalTodos(todoDate.value);
 
     newTodo.classList.add("todo-item");
     todoDiv.appendChild(newTodo);
-    todoInput.value = "";
-    todoDate.value = "";
+    taskName.value = "";
+    taskDate.value = "";
+
 
     //Create Edit button
-
     const editButton = document.createElement("button");
-    editButton.innerHTML = `<div class="btn fa fa-edit" onclick="editTask(${index})">Edit Task</div>`;
+
+    editButton.innerHTML = "<div class='fa fa-edit' onclick='editTask(\"" + index + "\")'> Edit Task </div>";
+
     editButton.classList.add("edit-btn");
     todoDiv.appendChild(editButton);
 
@@ -57,37 +97,61 @@ function addTodo() {
     trashButton.classList.add("trash-btn");
     todoDiv.appendChild(trashButton);
 
-
-    //attach final Todo
     todoList.appendChild(todoDiv);
+    // let dTask = ""
+    // let id = 1
+    // myTask.forEach(function(index) {
+    //     dTask += `<tr><th> ${id}</th>
+    //         <td>${index['task-name']} </td>
+    //         <td>${index['task-date']}</td>
+    //         <td> <button type="button" onclick="editTask(${index})" class="btn-primary">Edit Task</button></td>
+    //         <td> <button type="button" class="btn-info">Important</button></td>
+    //         <td> <button type="button" class="btn-success">Complete</button></td>
+    //         <td> <button type="button" class="btn-danger">Remove</button></td>
+    //     </tr>`
+    //         // index['task-name'] + index['task-Date'] + "<br>"
+    //     id++
+    // });
+    // dispTask.innerHTML = dTask
+    console.log(taskName.value + taskDate.value)
 }
 
-function deleteTodo(e) {
-    const item = e.target;
 
-    if (item.classList[0] === "trash-btn") {
-        // e.target.parentElement.remove();
-        const todo = item.parentElement;
-        todo.classList.add("fall");
-        //at the end
-        removeLocalTodos(todo);
-        todo.addEventListener("transitionend", e => {
-            todo.remove();
-        });
-    }
 
-    if (item.classList[0] === "complete-btn") {
-        const todo = item.parentElement;
-        todo.classList.toggle("completed");
-        console.log(todo);
-    }
+function editTask(index) {
+    // let popUp = document.getElementsByClassName("popup")
+    let btnSavetask = document.getElementById("btnSavetask");
+    let btnAddtask = document.getElementById("btnAddtask");
+    let save_index = document.getElementById("saveIndex");
+    let selectedTask = tasks[parseInt(index)];
+    console.log(selectedTask)
+    save_index.value = index
 
-    if (item.classList[0] === "important-btn") {
-        const todo = item.parentElement;
-        todo.classList.toggle("important");
-        console.log(todo);
-    }
+
+    taskName.value = tasks[index]['name'];
+    taskDate.value = tasks[index]['date'];
+    btnAddtask.style.display = "none";
+    btnSavetask.style.display = "block";
 }
+let btnSavetask = document.getElementById("btnSavetask");
+btnSavetask.addEventListener("click", function() {
+    let btnAddtask = document.getElementById("btnAddtask");
+    // getCookie()
+    let save_index = document.getElementById("saveIndex").value
+
+    for (let keys in tasks[save_index]) {
+        if (keys == 'name') {
+            tasks[save_index].name = taskName.value
+        }
+    }
+    btnSavetask.style.display = "none"
+    btnAddtask.style.display = "block"
+    taskName.value = ""
+    taskDate.value = ""
+    getTodos()
+})
+
+
 
 
 function filterTodo(e) {
@@ -124,98 +188,77 @@ function filterTodo(e) {
 }
 
 
-function editTask(index) {
-    // let btnSavetask = document.getElementById("btnSavetask");
-    let saveindex = document.getElementById("saveIndex");
-    let btnAddtask = document.getElementById("btnAddtask");
-    saveindex.value = index;
+// var myCookie = []
 
-    let webtask = localStorage.getItem("todos");
-    let todos = JSON.parse(webtask);
+// function setCookie() {
+//     // var cookieSet = {}
+//     // cookieSet['task-name'] = taskName.value
+//     // cookieSet['task-date'] = taskDate.value
+//     // myCookie.push(tasks);
+//     var cookieSet = JSON.stringify(tasks);
+//     Cookies.set('todoList', cookieSet);
+//     // document.cookie = "Todolist =" + tasks;
+// }
 
-    todoInput.value = todos[index];
-    btnAddtask.style.display = "none";
-    btnSavetask.style.display = "block";
-    // popupOpen();
-}
-let btnSavetask = document.getElementById("btnSavetask");
-btnSavetask.addEventListener("click", function() {
 
-    let webtask = localStorage.getItem("todos");
-    let todos = JSON.parse(webtask);
+function deleteTodo(e) {
+    const item = e.target;
 
-    let saveindex = document.getElementById("saveIndex").value;
-    todos[saveindex] = todoInput.value;
-    localStorage.setItem("todos", JSON.stringify(todos));
-    todoInput.value = "";
-    // getTodos();
-})
-
-function saveLocalTodos(todo) {
-    let todos;
-    let webtask = localStorage.getItem("todos");
-    if (webtask === null) {
-        todos = [];
-    } else {
-        todos = JSON.parse(webtask);
-    }
-    todos.push(todo);
-    localStorage.setItem("todos", JSON.stringify(todos));
-}
-
-function getLocalstorage() {
-    $todos = JSON.parse(localStorage.getItem("todos"));
-    return $todos
-}
-
-function removeLocalTodos(todo) {
-    let todos;
-    let webtask = localStorage.getItem("todos");
-    if (webtask === null) {
-        todos = [];
-    } else {
-        todos = JSON.parse(webtask);
+    if (item.classList[0] === "trash-btn") {
+        e.target.parentElement.remove();
+        const todo = item.parentElement;
+        todo.classList.add("fall");
+        //at the end
+        // removeLocalTodos(todo);
+        // todo.addEventListener("transitionend", e => {
+        //     todo.remove();
+        // });
     }
 
-    const todoIndex = todo.children[0].innerText;
-    todos.splice(todos.indexOf(todoIndex), 1);
-    localStorage.setItem("todos", JSON.stringify(todos));
-}
-
-function getTodos(t = []) {
-    let todos;
-    if (t.length > 0) {
-        todoList.innerHTML = ""
-        todos = t;
-    } else {
-        if (localStorage.getItem("todos") === null) {
-            todos = [];
-        } else {
-            todos = JSON.parse(localStorage.getItem("todos"));
-        }
+    if (item.classList[0] === "complete-btn") {
+        const todo = item.parentElement;
+        todo.classList.toggle("completed");
+        console.log(todo);
     }
 
-    todos.forEach(function(todo, index) {
+    if (item.classList[0] === "important-btn") {
+        const todo = item.parentElement;
+        todo.classList.toggle("important");
+        console.log(todo);
+    }
+}
 
-        //Create todo div
-        const todoDiv = document.createElement("div");
-        todoDiv.classList.add("todo");
 
-        dateTOdo = todo.split(" ")[1]
-            //Create list
-        const newTodo = document.createElement("li");
-        newTodo.innerText = todo;
-        newTodo.classList.add("todo-item");
-        todoDiv.appendChild(newTodo);
-        todoInput.value = "";
-        todoDate.value = "";
+function getTodos($t = []) {
+    // console.log(tasks)
+    $tasklist = []
+    if ($t.length > 0) {
+        todoList.innerHTML = ''
+        $tasklist = $t
+    } else {
+        $tasklist = tasks
+    }
+
+
+    $tasklist.forEach(function(todo, index) {
+        const todoDiv = document.createElement("li")
+        todoDiv.classList.add("todo")
+
+        const newTodo = document.createElement("li")
+
+        newTodo.innerHTML = `${todo.name} ${todo.date}`
+        newTodo.classList.add("todo-item")
+
+        todoDiv.appendChild(newTodo)
+        taskName.value = ""
+        taskDate.value = ""
+
 
         //Create Edit Button
-
-        const editButton = document.createElement("button");
-        editButton.innerHTML = `<div class="fa fa-edit" onclick="editTask(${index})">Edit Task</div>`;
-        editButton.classList.add("edit-btn");
-        todoDiv.appendChild(editButton);
+        const editButton = document.createElement("button")
+        editButton.innerHTML = `<div class="fa fa-edit" onclick="editTask(${index})"> Edit Task</div>`
+        editButton.classList.add("edit-btn")
+        todoDiv.appendChild(editButton)
 
         //Create important Button
         const impButton = document.createElement("button");
@@ -229,17 +272,19 @@ function getTodos(t = []) {
         completedButton.classList.add("complete-btn");
         todoDiv.appendChild(completedButton);
 
-
         //Create trash button
         const trashButton = document.createElement("button");
         trashButton.innerHTML = `<i class="fas fa-trash"> Remove</i>`;
         trashButton.classList.add("trash-btn");
         todoDiv.appendChild(trashButton);
 
-        //attach final Todo
         todoList.appendChild(todoDiv);
+        console.log(taskName.value + taskDate.value)
+
     });
 }
+
+
 
 
 function getDifference(date1, date2) {
@@ -249,10 +294,9 @@ function getDifference(date1, date2) {
     return Math.ceil(Math.abs($date2 - $date1) / (1000 * 60 * 60 * 24))
 }
 
-
+searchTodo_.addEventListener('click', filter_datewise)
 
 function filter_datewise() {
-
     $datefrom = document.getElementById('fromDate').value
     $dateto = document.getElementById('toDate').value
     $dateRange = [$datefrom]
@@ -271,36 +315,34 @@ function filter_datewise() {
     }
     console.log($dateRange)
 
-    $data = getLocalstorage();
+    $data = JSON.parse(getCookie('todoList'));
+
+    console.log($data)
+    console.log($dateRange)
     todoFindList = []
     $dateRange.forEach(daterange => {
-        $data.forEach(e => {
-            $ee = e.split(" ")
-            if ($ee[1] == daterange) {
-                todoFindList.push($ee.join(" "))
+        $data.forEach(taskdict => {
+            if (taskdict.date == daterange) {
+                todoFindList.push(taskdict)
             }
         })
     })
     getTodos(todoFindList)
 }
 
-
-
-// SearchList
 let searchtextbox = document.getElementById("searchtextbox");
 searchtextbox.addEventListener("input", function() {
-    let todosearch = document.querySelectorAll("ul");
-    Array.from(todosearch).forEach(function(todo) {
-        let searchedtext = todo.getElementsByClassName("todo")[0].innerHTML;
+    let trlist = document.getElementsByClassName("todo");
+    Array.from(trlist).forEach(function(item) {
+        let searchedtext = item.getElementsByTagName("li")[0].innerText;
         let searchtextboxval = searchtextbox.value;
         let re = new RegExp(searchtextboxval, 'gi');
         if (searchedtext.match(re)) {
-            todo.style.display = "table";
+            // const todoDiv = document.createElement("div")
+            // todoDiv.classList.add("todo")
+            item.style.display = "d-block";
         } else {
-            todo.style.display = "none";
+            item.style.display = "none";
         }
     })
 })
-
-
-searchTodo_.addEventListener('click', filter_datewise)
