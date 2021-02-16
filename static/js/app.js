@@ -9,7 +9,6 @@ let tasks = [];
 
 
 document.addEventListener("DOMContentLoaded", getTodos);
-addTask.addEventListener("click", addTodo)
 todoList.addEventListener("click", deleteTodo);
 filterOption.addEventListener("click", filterTodo);
 
@@ -20,6 +19,7 @@ function init() {
     tasks = getCookie("todoList");
     // debugger;
     if (typeof tasks != "" && tasks != "") {
+        // tasks = JSON.parse(tasks);
         tasks = JSON.parse(tasks);
     } else {
         tasks = [];
@@ -50,6 +50,8 @@ function getCookie(cname) {
     return "";
 }
 
+addTask.addEventListener("click", addTodo)
+    // var index = ""
 
 function addTodo() {
 
@@ -63,7 +65,6 @@ function addTodo() {
     console.log(tasks)
 
     setCookie('todoList', tasks, 1);
-    // saveLocalTodos(todoDate.value);
 
     newTodo.classList.add("todo-item");
     todoDiv.appendChild(newTodo);
@@ -73,9 +74,7 @@ function addTodo() {
 
     //Create Edit button
     const editButton = document.createElement("button");
-
     editButton.innerHTML = "<div class='fa fa-edit' onclick='editTask(\"" + index + "\")'> Edit Task </div>";
-
     editButton.classList.add("edit-btn");
     todoDiv.appendChild(editButton);
 
@@ -98,61 +97,56 @@ function addTodo() {
     todoDiv.appendChild(trashButton);
 
     todoList.appendChild(todoDiv);
-    // let dTask = ""
-    // let id = 1
-    // myTask.forEach(function(index) {
-    //     dTask += `<tr><th> ${id}</th>
-    //         <td>${index['task-name']} </td>
-    //         <td>${index['task-date']}</td>
-    //         <td> <button type="button" onclick="editTask(${index})" class="btn-primary">Edit Task</button></td>
-    //         <td> <button type="button" class="btn-info">Important</button></td>
-    //         <td> <button type="button" class="btn-success">Complete</button></td>
-    //         <td> <button type="button" class="btn-danger">Remove</button></td>
-    //     </tr>`
-    //         // index['task-name'] + index['task-Date'] + "<br>"
-    //     id++
-    // });
-    // dispTask.innerHTML = dTask
-    console.log(taskName.value + taskDate.value)
+    popupClose()
 }
 
 
+var selectedTask = ""
 
 function editTask(index) {
-    // let popUp = document.getElementsByClassName("popup")
     let btnSavetask = document.getElementById("btnSavetask");
     let btnAddtask = document.getElementById("btnAddtask");
-    let save_index = document.getElementById("saveIndex");
-    let selectedTask = tasks[parseInt(index)];
+    selectedTask = tasks[parseInt(index)];
     console.log(selectedTask)
-    save_index.value = index
-
 
     taskName.value = tasks[index]['name'];
     taskDate.value = tasks[index]['date'];
     btnAddtask.style.display = "none";
     btnSavetask.style.display = "block";
+    popupOpen()
 }
 let btnSavetask = document.getElementById("btnSavetask");
-btnSavetask.addEventListener("click", function() {
-    let btnAddtask = document.getElementById("btnAddtask");
-    // getCookie()
-    let save_index = document.getElementById("saveIndex").value
+btnSavetask.addEventListener("click", onSaveTask);
 
-    for (let keys in tasks[save_index]) {
-        if (keys == 'name') {
-            tasks[save_index].name = taskName.value
+function onSaveTask() {
+    saveTask({
+        id: selectedTask,
+        name: taskName.value,
+        date: taskDate.value
+    });
+    // setCookie("todoList", JSON.stringify(tasks))
+
+    // console.log(taskName.value + " " + taskDate.value)
+    popupClose()
+}
+
+function saveTask(taskData) {
+    // alert("hello")
+
+    if (!taskData) {
+        return
+    }
+    for (let keys in tasks[taskData.id.id]) {
+        if (keys == 'name' || keys == 'date') {
+            tasks[taskData.id.id].name = taskName.value
+            tasks[taskData.id.id].date = taskDate.value
         }
     }
-    btnSavetask.style.display = "none"
-    btnAddtask.style.display = "block"
-    taskName.value = ""
-    taskDate.value = ""
-    getTodos()
-})
+    // setCookie("todoList", JSON.stringify(tasks))
+    setCookie("todoList", tasks)
+        // getCookie('todoList', JSON.parse(tasks))
 
-
-
+}
 
 function filterTodo(e) {
     const todos = todoList.childNodes;
@@ -334,15 +328,27 @@ let searchtextbox = document.getElementById("searchtextbox");
 searchtextbox.addEventListener("input", function() {
     let trlist = document.getElementsByClassName("todo");
     Array.from(trlist).forEach(function(item) {
-        let searchedtext = item.getElementsByTagName("li")[0].innerText;
-        let searchtextboxval = searchtextbox.value;
-        let re = new RegExp(searchtextboxval, 'gi');
-        if (searchedtext.match(re)) {
-            // const todoDiv = document.createElement("div")
-            // todoDiv.classList.add("todo")
-            item.style.display = "d-block";
-        } else {
-            item.style.display = "none";
-        }
-    })
+            let searchedtext = item.getElementsByTagName("li")[0].innerText;
+            let searchtextboxval = searchtextbox.value;
+            let re = new RegExp(searchtextboxval, 'gi');
+            if (searchedtext.match(re)) {
+                // const todoDiv = document.createElement("div")
+                // todoDiv.classList.add("todo")
+                item.style.display = "d-block";
+            } else {
+                item.style.display = "none";
+            }
+        })
+        // searchtextbox.value = ""
 })
+
+// Popup Open
+function popupOpen() {
+    document.getElementById("popup").style.display = "block";
+    document.getElementById("overlay").style.display = "block";
+}
+// Popup Close
+function popupClose() {
+    document.getElementById("popup").style.display = "none";
+    document.getElementById("overlay").style.display = "none";
+}

@@ -17,7 +17,7 @@ h1 {
 /* .showData {} */
 
 .todo-input {
-    margin: 17px;
+    margin: 17px 60px;
     width: 355px;
     height: 30px;
     padding: 25px;
@@ -25,7 +25,7 @@ h1 {
     border: 1.5px solid;
     border-radius: 5px;
     padding-left: 10px;
-    /* box-shadow: 4px 3px 5px #ccc;*/
+    box-shadow: 4px 3px 5px #ccc;
 }
 
 label {
@@ -38,7 +38,7 @@ label {
 }
 
 .todo-date {
-    margin: 17px;
+    margin: 17px 60px;
     width: 355px;
     height: 30px;
     padding: 25px;
@@ -46,7 +46,7 @@ label {
     border: 1.5px solid;
     border-radius: 5px;
     padding-left: 10px;
-    /* box-shadow: 4px 3px 5px #ccc;*/
+    box-shadow: 4px 3px 5px #ccc;
 }
 
 .todo-button {
@@ -143,7 +143,7 @@ select {
 .important-btn,
 .edit-btn {
     background: rgba(0, 0, 0, 0.4);
-    color: white;
+    color: #ffffff;
     border: none;
     padding: .5rem;
     cursor: pointer;
@@ -218,18 +218,17 @@ select {
     border-radius: 5px;
 }
 
-.box {
-    /* width: 57%; */
+
+/* .box {
     margin: -15px 0px 0px 5rem;
-    /* background: rgba(255, 255, 255, 0.2); */
     padding: 35px;
-    /* border: 2px solid #fff; */
     border-radius: 20px/50px;
     background-clip: padding-box;
     text-align: center;
-}
+} */
 
-.fa-plus {
+
+/* .fa-plus {
     font-size: 20px;
     margin: 5px 10px 0px 10px;
 }
@@ -302,17 +301,115 @@ select {
 .popup .content {
     max-height: 30%;
     overflow: auto;
-}
+} */
 
-@media screen and (max-width: 700px) {
+
+/* @media screen and (max-width: 700px) {
     .box {
         width: 70%;
     }
-    .popup {
-        width: 70%;
-    }
+
+.popup {
+    width: 70%;
 }
 
+
+}
 .inputPopup {
     margin-top: 40px;
+}
+*/
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto Condensed', sans-serif;
+}
+
+
+/* Overlay Styles */
+
+.overlay {
+    background: rgba(0, 0, 0, 0.8);
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 100;
+}
+
+
+/* Popup */
+
+.popup {
+    background: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 500px;
+    z-index: 101;
+    /*Change your width here*/
+    height: 300px;
+    /*Change your height here*/
+    margin: auto;
+    border-radius: 15px;
+    box-shadow: 3px 2px 5px #ccc;
+    /* margin: auto 5%; */
+}
+
+
+/* Popup Inner */
+
+.openpopup {
+    margin-left: 190px;
+    margin-top: 20px;
+}
+
+.popup-inner {
+    position: relative;
+    padding: 1em;
+}
+
+input.s3-btn-close {
+    position: absolute;
+    top: -0.5em;
+    right: -0.5em;
+    background: black;
+    border: solid 2px white;
+    color: white;
+    cursor: pointer;
+    border-radius: 15px;
+    outline: none;
+}
+
+.popup h2 {
+    text-align: center;
+}
+
+
+/*************
+    S3 Button
+  *************/
+
+input.s3-btn {
+    background: #f1f1f1;
+    border: none;
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+    /* position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0; */
+    margin: 10px 150px;
+}
+
+.s3-center {
+    text-align: center;
 }

@@ -23,7 +23,7 @@
 
 
     <div class="container">
-        <h1>Todo List</h1>
+        <h1 class="mt-5 pt-3">Todo List</h1>
         <hr>
         <div class="row mb-5">
             <div class="col-md-3">
@@ -73,36 +73,42 @@
                     </div>
 
                     <div class="col-md-6">
-                        <div class="box">
+                        <!-- Overlay -->
+                        <div class="overlay" id="overlay" style="display:none;"></div>
+                        <!-- <div class="box">
                             <a class="button" id="popup" href="#popup1"> <i class="fa fa-plus"></i>Add Your Task</a>
-                        </div>
+                        </div> -->
 
-                        <div id="popup1" class="overlay">
-                            <div class="popup">
-                                <h2 style="text-align: center;" class="mt-3">Create Your Todo List</h2>
-                                <a class="close" href="#">&times;</a>
+                        <!-- Popup -->
+                        <div class="popup" id="popup" style="display:none;">
+                            <div class="popup-inner">
+                                <h2>Enter Your task</h2>
+
+                                <input type="button" id="popup" name="Close" class="s3-btn-close" onclick="popupClose();" value="&times;">
+
                                 <div class="row justify-content-center">
                                     <div class="col-md-12">
                                         <div class="inputPopup">
                                             <input type="text" id="txtName" class="form-control todo-input" placeholder="Enter Your Task">
-                                            <input type="hidden" id="saveIndex" class="todo-input text-capitalize" />
-                                            <!-- <input type="text" id="todoinput" class="todo-input form-control text-capitalize" placeholder="Enter Your Task" /> -->
+                                            <!-- <input type="hidden" id="saveIndex" class="todo-input text-capitalize" /> -->
                                             <input type="date" id="txtDate" class="form-control todo-date">
 
-                                            <!-- <input type="date" id="tododate" class="todo-date form-control text-capitalize" placeholder="Enter Your Task" /> -->
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row justify-content-center mt-2">
                                     <div class="col-md-4">
-                                        <!-- <button class="todo-button" id="btnAddtask" type="submit">SUBMIT TASK</button> -->
-                                        <button type="button" class="btn todo-button" id="btnAddtask">Add Task</button>
-                                        <button type="button" class="btn btn-success" id="btnSavetask" style="display: none;">Save Task</button>
-                                        <!-- <button class="todo-button" id="btnSavetask" style="display: none;">SAVE TASK</button> -->
+                                        <button type="button" class="btn todo-button" style="margin-left: 20px;" id="btnAddtask">Add Task</button>
+                                        <button type="button" class="btn btn-success" id="btnSavetask" style="display: none; margin-left: 20px;">Save Task</button>
                                     </div>
                                 </div>
+                                <!-- <h2>This is popup</h2>
+                                    <p>Hey I am a popup overlay working with JavaScript</p> -->
                             </div>
                         </div>
+
+                        <!-- Popup Button -->
+                        <input type="button" class="s3-btn openpopup" name="Open" onclick="popupOpen();" value="Add Your Task">
                     </div>
                     <div class="col-md-12">
                         <!-- <div class="to-do-output"> -->
