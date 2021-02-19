@@ -9,12 +9,12 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
     <link rel="stylesheet" href="static/css/style.css" />
+    <link rel="stylesheet" href="static/scss/firstdemo.scss" />
 </head>
 
 <body>
 
-
-    <nav class="navbar navbar-light bg-light fixed-top">
+    <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand">#todoList</a>
         <div class="d-flex">
             <input class="form-control me-2" id="searchtextbox" type="search" placeholder="Search" aria-label="Search">
@@ -23,12 +23,12 @@
 
 
     <div class="container">
-        <h1 class="mt-5 pt-3">Todo List</h1>
+        <h1 class="mt-5 pt-3 ontop__title">Todo List</h1>
         <hr>
         <div class="row mb-5">
             <div class="col-md-3">
                 <div class="row">
-                    <div class="col-md-12 your-task-h2">
+                    <div class="col-md-12 find--yourtask">
                         <h2>Find Your Task</h2>
                     </div>
 
@@ -37,15 +37,15 @@
                             <!-- <div class="form-tag"> -->
                             <div class="row mt-3">
                                 <div class="col-md-12">
-                                    <label>From</label><br>
-                                    <input type="date" class="form-control dateInput" id="fromDate">
+                                    <label class="label__from2to">From</label><br>
+                                    <input type="date" class="form-control input__datefilter" id="fromDate">
                                 </div>
                             </div>
 
                             <div class="row mt-3">
                                 <div class="col-md-12">
-                                    <label>To</label><br>
-                                    <input type="date" class="form-control dateInput" id="toDate">
+                                    <label class="label__from2to" >To</label><br>
+                                    <input type="date" class="form-control input__datefilter" id="toDate">
                                 </div>
                             </div>
 
@@ -61,18 +61,18 @@
             </div>
             <div class="col-md-9">
                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="select">
-                            <select name="todos" class="filter-todo">
+                    <div class="col-md-8">
+                        <div class="selectfilter">
+                            <select name="todos" class="filter__todo">
                                 <option value="all">All</option>
                                 <option value="completed">Completed</option>
                                 <option value="uncompleted">Uncompleted</option>
-                                <option value="important">important</option>
+                                <option value="important">Important</option>
                             </select>
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <!-- Overlay -->
                         <div class="overlay" id="overlay" style="display:none;"></div>
                         <!-- <div class="box">
@@ -81,25 +81,25 @@
 
                         <!-- Popup -->
                         <div class="popup" id="popup" style="display:none;">
-                            <div class="popup-inner">
-                                <h2>Enter Your task</h2>
+                            <div class="popup--inner">
+                                <h2 class="popupopen_title">Enter Your task</h2>
 
-                                <input type="button" id="popup" name="Close" class="s3-btn-close" onclick="popupClose();" value="&times;">
+                                <input type="button" id="popup" name="Close" class="clost__popupbtn" onclick="popupClose();" value="&times;">
 
                                 <div class="row justify-content-center">
                                     <div class="col-md-12">
-                                        <div class="inputPopup">
-                                            <input type="text" id="txtName" class="form-control todo-input" placeholder="Enter Your Task">
+                                        <div class="input--popup">
+                                            <input type="text" id="txtName" class="form-control input__todoname" placeholder="Enter Your Task">
                                             <!-- <input type="hidden" id="saveIndex" class="todo-input text-capitalize" /> -->
-                                            <input type="date" id="txtDate" class="form-control todo-date">
+                                            <input type="date" id="txtDate" class="form-control input__tododate">
 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="row justify-content-center mt-2">
                                     <div class="col-md-4">
-                                        <button type="button" class="btn todo-button" style="margin-left: 20px;" id="btnAddtask">Add Task</button>
-                                        <button type="button" class="btn btn-success" id="btnSavetask" style="display: none; margin-left: 20px;">Save Task</button>
+                                        <button type="button" class="btn btn__addtodo" id="btnAddtask">Add Task</button>
+                                        <button type="button" class="btn btn-success btn__savetodo" id="btnSavetask" style="display: none; margin-left: 20px;">Save Task</button>
                                     </div>
                                 </div>
                                 <!-- <h2>This is popup</h2>
@@ -108,15 +108,15 @@
                         </div>
 
                         <!-- Popup Button -->
-                        <input type="button" class="s3-btn openpopup" name="Open" onclick="popupOpen();" value="Add Your Task">
+                        <input type="button" class="open__btnpopup open__popup" name="Open" onclick="popupOpen();" value="Add Your Task">
                     </div>
                     <div class="col-md-12">
                         <!-- <div class="to-do-output"> -->
-                        <div class="todo-inner justify-content-center">
-                            <h2>Your Todo Task</h2>
-                            <div class="todo-container">
-                                <div class="todo-container">
-                                    <ul class="todo-list text-capitalize"></ul>
+                        <div class="todoinner">
+                            <h2 class="todoinner__h2">Your Todo Task</h2>
+                            <div class="todo--container">
+                                <div class="todo--container">
+                                    <ul class="todo__list text-capitalize"></ul>
                                 </div>
                                 <!-- <table class="table  table-striped mt-2 mb-2 showData" id="displayTask">
 
@@ -130,6 +130,9 @@
     </div>
 
     <script src="static/js/app.js "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
 </body>
 
 </html>
