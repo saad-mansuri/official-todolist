@@ -2,8 +2,8 @@ let taskName = document.getElementById("txtName")
 let taskDate = document.getElementById("txtDate")
 let addTask = document.getElementById("btnAddtask")
 let dispTask = document.getElementById("displayTask")
-const todoList = document.querySelector(".todo__list");
-const filterOption = document.querySelector(".filter__todo");
+const todoList = document.querySelector(".todolist__all-tasks");
+const filterOption = document.querySelector(".selectfilter__todo");
 const search_BTN = document.getElementById('searchTodo_');
 let tasks = [];
 
@@ -56,7 +56,7 @@ addTask.addEventListener("click", addTodo)
 function addTodo() {
 
     const todoDiv = document.createElement("div")
-    todoDiv.classList.add("todo__display")
+    todoDiv.classList.add("todolist__single-task")
 
     const newTodo = document.createElement("li")
     newTodo.innerHTML = taskName.value + " " + taskDate.value;
@@ -66,7 +66,7 @@ function addTodo() {
 
     setCookie('todoList', tasks, 1);
 
-    newTodo.classList.add("todo__item");
+    newTodo.classList.add("todolist__item");
     todoDiv.appendChild(newTodo);
     taskName.value = "";
     taskDate.value = "";
@@ -75,25 +75,25 @@ function addTodo() {
     //Create Edit button
     const editButton = document.createElement("button");
     editButton.innerHTML = "<div class='fa fa-edit' onclick='editTask(\"" + index + "\")'> Edit Task </div>";
-    editButton.classList.add("edit__btn");
+    editButton.classList.add("todolist__edit-btn");
     todoDiv.appendChild(editButton);
 
     //Create impotant button
     const impButton = document.createElement("button");
     impButton.innerHTML = `<i class="fa fa-exclamation-triangle"> Important</i>`;
-    impButton.classList.add("important__btn");
+    impButton.classList.add("todolist__important-btn");
     todoDiv.appendChild(impButton);
 
     //Create Completed Button
     const completedButton = document.createElement("button");
     completedButton.innerHTML = `<i class="fas fa-check"> Complete</i>`;
-    completedButton.classList.add("complete__btn");
+    completedButton.classList.add("todolist__complete-btn");
     todoDiv.appendChild(completedButton);
 
     //Create trash button
     const trashButton = document.createElement("button");
     trashButton.innerHTML = `<i class="fas fa-trash"> Remove</i>`;
-    trashButton.classList.add("trash__btn");
+    trashButton.classList.add("todolist__trash-btn");
     todoDiv.appendChild(trashButton);
 
     todoList.appendChild(todoDiv);
@@ -155,16 +155,16 @@ function filterTodo(e) {
             case "all":
                 todo.style.display = "flex";
                 break;
-            case "completed":
-                if (todo.classList.contains("completed")) {
+            case "todolist__completed_btn":
+                if (todo.classList.contains("todolist__completed_btn")) {
                     todo.style.display = "flex";
                 } else {
                     todo.style.display = "none";
                 }
                 break;
 
-            case "important":
-                if (todo.classList.contains("important")) {
+            case "todolist__important_btn":
+                if (todo.classList.contains("todolist__important_btn")) {
                     todo.style.display = "flex";
                 } else {
                     todo.style.display = "none";
@@ -172,7 +172,7 @@ function filterTodo(e) {
                 break;
 
             case "uncompleted":
-                if (!todo.classList.contains("completed") && !todo.classList.contains("important")) {
+                if (!todo.classList.contains("todolist__completed_btn") && !todo.classList.contains("todolist__important_btn")) {
                     todo.style.display = "flex";
                 } else {
                     todo.style.display = "none";
@@ -184,7 +184,7 @@ function filterTodo(e) {
 function deleteTodo(e) {
     const item = e.target;
 
-    if (item.classList[0] === "trash__btn") {
+    if (item.classList[0] === "todolist__trash-btn") {
         e.target.parentElement.remove();
         const todo = item.parentElement;
         todo.classList.add("fall");
@@ -195,15 +195,15 @@ function deleteTodo(e) {
         // });
     }
 
-    if (item.classList[0] === "complete__btn") {
+    if (item.classList[0] === "todolist__complete-btn") {
         const todo = item.parentElement;
-        todo.classList.toggle("completed");
+        todo.classList.toggle("todolist__completed_btn");
         console.log(todo);
     }
 
-    if (item.classList[0] === "important__btn") {
+    if (item.classList[0] === "todolist__important-btn") {
         const todo = item.parentElement;
-        todo.classList.toggle("important");
+        todo.classList.toggle("todolist__important_btn");
         console.log(todo);
     }
 }
@@ -222,12 +222,12 @@ function getTodos($t = []) {
 
     $tasklist.forEach(function(todo, index) {
         const todoDiv = document.createElement("li")
-        todoDiv.classList.add("todo__display")
+        todoDiv.classList.add("todolist__single-task")
 
         const newTodo = document.createElement("li")
 
         newTodo.innerHTML = `${todo.name} ${todo.date}`
-        newTodo.classList.add("todo__item")
+        newTodo.classList.add("todolist__item")
 
         todoDiv.appendChild(newTodo)
         taskName.value = ""
@@ -237,25 +237,25 @@ function getTodos($t = []) {
         //Create Edit Button
         const editButton = document.createElement("button")
         editButton.innerHTML = `<div class="fa fa-edit" onclick="editTask(${index})"> Edit Task</div>`
-        editButton.classList.add("edit__btn")
+        editButton.classList.add("todolist__edit-btn")
         todoDiv.appendChild(editButton)
 
         //Create important Button
         const impButton = document.createElement("button");
         impButton.innerHTML = `<i class="fa fa-exclamation-triangle"> Important</i>`;
-        impButton.classList.add("important__btn");
+        impButton.classList.add("todolist__important-btn");
         todoDiv.appendChild(impButton);
 
         //Create Completed Button
         const completedButton = document.createElement("button");
         completedButton.innerHTML = `<i class="fas fa-check"> Complete</i>`;
-        completedButton.classList.add("complete__btn");
+        completedButton.classList.add("todolist__complete-btn");
         todoDiv.appendChild(completedButton);
 
         //Create trash button
         const trashButton = document.createElement("button");
         trashButton.innerHTML = `<i class="fas fa-trash"> Remove</i>`;
-        trashButton.classList.add("trash__btn");
+        trashButton.classList.add("todolist__trash-btn");
         todoDiv.appendChild(trashButton);
 
         todoList.appendChild(todoDiv);
@@ -312,7 +312,7 @@ function filter_datewise() {
 
 let searchtextbox = document.getElementById("searchtextbox");
 searchtextbox.addEventListener("input", function() {
-    let trlist = document.getElementsByClassName("todo__display");
+    let trlist = document.getElementsByClassName("todolist__single-task");
     Array.from(trlist).forEach(function(item) {
             let searchedtext = item.getElementsByTagName("li")[0].innerText;
             let searchtextboxval = searchtextbox.value;

@@ -3,25 +3,17 @@ body {
     padding: 0;
     font-family: 'Roboto Condensed', sans-serif;
 }
-.ontop__title{
+
+.ontop__title {
     text-align: center;
     color: #000000;
 }
-.find--yourtask {
+
+.title__findyourtask {
     margin: 18px 20px;
 }
-.input__todoname {
-    margin: 17px 60px;
-    width: 355px;
-    height: 30px;
-    padding: 25px;
-    border-radius: 5px;
-    border: 1.5px solid;
-    border-radius: 5px;
-    padding-left: 10px;
-    box-shadow: 4px 3px 5px #ccc;
-}
-.input__tododate {
+
+.popup__input-name-date {
     margin: 17px 60px;
     width: 355px;
     height: 30px;
@@ -33,15 +25,17 @@ body {
     box-shadow: 4px 3px 5px #ccc;
 }
 
-.label__from2to{
+.datefilter-task__from2to {
     font-size: 20px;
+    /* margin-top: 3rem; */
 }
 
-.input__datefilter {
+.datefilter-task__input {
     padding: 10px;
     font-size: 15px;
 }
-.btn__addtodo {
+
+.popup__add-save-btn {
     width: 125px;
     height: 100%;
     color: #fff;
@@ -51,7 +45,18 @@ body {
     border-radius: 5px;
     margin-left: 20px;
 }
-.btn__savetodo{
+
+.popup__add-save-btn:hover {
+    background: #7a30c2;
+    box-shadow: 4px 3px 5px #ccc;
+}
+
+.popup__savetodo-btn {
+    background-color: #5cb85c;
+}
+
+
+/* .btn__savetodo {
     width: 125px;
     height: 100%;
     color: #fff;
@@ -59,13 +64,9 @@ body {
     padding: 10px;
     border-radius: 5px;
     margin-left: 20px;
-}
-.btn__addtodo:hover {
-    background: #7a30c2;
-    box-shadow: 4px 3px 5px #ccc;
-}
+} */
 
-.todoinner {
+.todolist {
     margin-top: 30px;
     width: 100%;
     float: left;
@@ -74,19 +75,20 @@ body {
     background: #F5F5F5;
 }
 
-.todoinner__h2 {
+.todolist__innertitle {
     text-align: center;
     font-size: 30px;
     margin: 20px 0px;
 }
 
-.selectfilter{
+.selectfilter {
     width: 50%;
     margin: 1rem 1rem 1rem 9rem;
     position: relative;
     overflow: hidden;
 }
-.filter__todo {
+
+.selectfilter__todo {
     color: #ff6f47;
     font-family: "Poppins", sans-serif;
     cursor: pointer;
@@ -97,16 +99,19 @@ body {
     width: 100%;
 }
 
-.todo--container {
+.todolist__wrap-tasks {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 0px 40px 0px 40px;
 }
-.todo__list {
+
+.todolist__all-tasks {
     width: 100%;
     list-style: none;
 }
-.todo__display {
+
+.todolist__single-task {
     border-radius: 10px;
     width: 110%;
     margin: 12px 0px 0px -3rem;
@@ -119,14 +124,15 @@ body {
     transition: all 0.1s ease-in;
     /* transition: all; */
 }
-.todo__display li {
+
+.todolist__single-task li {
     flex: 1;
 }
 
-.trash__btn,
-.complete__btn,
-.important__btn,
-.edit__btn {
+.todolist__trash-btn,
+.todolist__complete-btn,
+.todolist__important-btn,
+.todolist__edit-btn {
     background: rgba(0, 0, 0, 0.4);
     color: #ffffff;
     border: none;
@@ -137,19 +143,19 @@ body {
     border-radius: 10px;
 }
 
-.edit__btn {
+.todolist__edit-btn {
     background-color: #993CF3;
 }
 
-.important__btn {
+.todolist__important-btn {
     background: #ff6f47;
 }
 
-.complete__btn {
+.todolist__complete-btn {
     background: rgb(11, 212, 162);
 }
 
-.todo__item {
+.todolist__item {
     padding: 0rem 0.5rem;
 }
 
@@ -164,13 +170,13 @@ body {
     opacity: 0;
 }
 
-.completed {
+.todolist__completed_btn {
     text-decoration: line-through;
     /* opacity: 0.5; */
     color: rgb(11, 212, 162);
 }
 
-.important {
+.todolist__important_btn {
     /* opacity: 0.5; */
     color: red;
     text-decoration: line-through;
@@ -178,7 +184,10 @@ body {
 
 
 /* Popup Open*/
+
+
 /* Overlay Styles */
+
 .overlay {
     background: rgba(0, 0, 0, 0.8);
     opacity: 0.8;
@@ -190,6 +199,7 @@ body {
     right: 0px;
     z-index: 100;
 }
+
 .popup {
     background: white;
     position: fixed;
@@ -204,12 +214,16 @@ body {
     border-radius: 15px;
     box-shadow: 3px 2px 5px #ccc;
 }
+
+
 /* Popup Inner */
-.popup--inner {
+
+.popup__inner {
     position: relative;
     padding: 1em;
 }
-.clost__popupbtn {
+
+.popup__closebtn {
     position: absolute;
     top: -0.5em;
     right: -0.5em;
@@ -220,15 +234,21 @@ body {
     border-radius: 15px;
     outline: none;
 }
-.popupopen_title{
+
+.popup__title {
     text-align: center;
 }
+
+
 /* Open popup button for add Task */
-.open__btnpopup {
-    background: #f1f1f1;
+
+.popup__openbtn {
+    background: #993CF3;
     border: none;
     width: 200px;
     height: 50px;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 11px;
+    border-radius: 10px;
+    color: #fff;
 }
