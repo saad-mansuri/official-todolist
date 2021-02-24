@@ -1,0 +1,28 @@
+.datefilter-task {
+    &__from2to {
+        font-size: 20px;
+        /* margin-top: 3rem; */
+    }
+    &__input {
+        padding: 10px;
+        font-size: 15px;
+    }
+}
+
+
+.selectfilter {
+    width: 50%;
+    margin: 1rem 1rem 1rem 9rem;
+    position: relative;
+    overflow: hidden;
+    &__todo {
+        color: #ff6f47;
+        // font-family: "Poppins", sans-serif;
+        cursor: pointer;
+        width: 100%;
+        border: 2px solid;
+        padding: .5rem;
+        border-radius: 10px;
+        width: 100%;
+    }
+}

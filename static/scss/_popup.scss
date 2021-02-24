@@ -1,0 +1,92 @@
+@import "variables";
+.overlay {
+    background: rgba(0, 0, 0, 0.8);
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 100;
+}
+
+.popup {
+    background: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 500px;
+    z-index: 101;
+    height: 300px;
+    margin: auto;
+    border-radius: 15px;
+    box-shadow: 3px 2px 5px #ccc;
+    &__inner {
+        position: relative;
+        padding: 1em;}
+    &__title {
+            text-align: center;
+    }
+    &__closebtn {
+            position: absolute;
+            top: -0.5em;
+            right: -0.5em;
+            background: black;
+            border: solid 2px white;
+            color: white;
+            cursor: pointer;
+            border-radius: 15px;
+            outline: none;
+    }
+    &__input-tasks {}
+    &__input-name-date {
+        margin: 17px 60px;
+        width: 355px;
+        height: 30px;
+        padding: 25px;
+        border-radius: 5px;
+        border: 1.5px solid;
+        border-radius: 5px;
+        padding-left: 10px;
+        box-shadow: 4px 3px 5px #ccc;
+    }
+    &__btn-tasks {}
+    &__add-save-btn {
+        width: 125px;
+        height: 100%;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        background: $btn-background-color;
+        border-radius: 5px;
+        margin-left: 20px;
+        &:hover {
+            background: #7a30c2;
+            color: #ffffff;
+            box-shadow: 4px 3px 5px #ccc;
+        }
+    }
+    &__savetodo-btn {
+        background: $savebtn-color;  
+        &:hover {
+            background: $savebtn-color;
+        }
+    }
+}
+
+
+/* Open popup button for add Task */
+
+.add__taskbtn {
+    background: $btn-background-color;
+    border: none;
+    width: 200px;
+    height: 50px;
+    cursor: pointer;
+    margin-top: 11px;
+    border-radius: 10px;
+    color: #fff;
+}

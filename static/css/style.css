@@ -52,7 +52,11 @@ body {
 }
 
 .popup__savetodo-btn {
-    background-color: #5cb85c;
+    background-color: #198754;
+}
+
+.popup__savetodo-btn:hover {
+    background-color: #198754;
 }
 
 
@@ -122,12 +126,13 @@ body {
     justify-content: space-between;
     align-items: center;
     transition: all 0.1s ease-in;
+    flex: 1;
     /* transition: all; */
 }
 
-.todolist__single-task li {
+/* .todolist__single-task li {
     flex: 1;
-}
+} */
 
 .todolist__trash-btn,
 .todolist__complete-btn,
@@ -187,7 +192,6 @@ body {
 
 
 /* Overlay Styles */
-
 .overlay {
     background: rgba(0, 0, 0, 0.8);
     opacity: 0.8;

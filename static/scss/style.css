@@ -1,22 +1,3 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto Condensed', sans-serif; }
-
-.todo__main-title {
-  text-align: center;
-  color: #000000; }
-
-.title__findyourtask {
-  margin: 18px 20px; }
-
-.datefilter-task__from2to {
-  font-size: 20px;
-  /* margin-top: 3rem; */ }
-.datefilter-task__input {
-  padding: 10px;
-  font-size: 15px; }
-
 .todolist {
   margin-top: 30px;
   width: 100%;
@@ -33,71 +14,49 @@ body {
     justify-content: center;
     align-items: center;
     padding: 0px 40px 0px 40px; }
-    .todolist__wrap-tasks__all-tasks {
-      width: 100%;
-      list-style: none; }
-      .todolist__wrap-tasks__all-tasks__important_btn {
-        /* opacity: 0.5; */
-        color: red;
-        text-decoration: line-through; }
-      .todolist__wrap-tasks__all-tasks__completed_btn {
-        text-decoration: line-through;
-        /* opacity: 0.5; */
-        color: #0bd4a2; }
-      .todolist__wrap-tasks__all-tasks__single-task {
-        border-radius: 10px;
-        width: 110%;
-        margin: 12px 0px 0px -3rem;
-        background: #ffffff;
-        font-size: 1.5rem;
-        color: black;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        transition: all 0.1s ease-in;
-        flex: 1; }
-        .todolist__wrap-tasks__all-tasks__single-task__item {
-          padding: 0rem 0.5rem; }
-        .todolist__wrap-tasks__all-tasks__single-task__trash-btn, .todolist__wrap-tasks__all-tasks__single-task__complete-btn, .todolist__wrap-tasks__all-tasks__single-task__important-btn, .todolist__wrap-tasks__all-tasks__single-task__edit-btn {
-          background: rgba(0, 0, 0, 0.4);
-          color: #ffffff;
-          border: none;
-          padding: .5rem;
-          cursor: pointer;
-          font-size: 1rem;
-          margin: 5px;
-          border-radius: 10px; }
-        .todolist__wrap-tasks__all-tasks__single-task__edit-btn {
-          background-color: #993CF3; }
-        .todolist__wrap-tasks__all-tasks__single-task__important-btn {
-          background: #ff6f47; }
-        .todolist__wrap-tasks__all-tasks__single-task__complete-btn {
-          background: #0bd4a2; }
-
-.selectfilter {
-  width: 50%;
-  margin: 1rem 1rem 1rem 9rem;
-  position: relative;
-  overflow: hidden; }
-  .selectfilter__todo {
-    color: #ff6f47;
-    cursor: pointer;
+  .todolist__all-tasks {
     width: 100%;
-    border: 2px solid;
-    padding: .5rem;
+    list-style: none; }
+  .todolist__single-task {
     border-radius: 10px;
-    width: 100%; }
+    width: 110%;
+    margin: 12px 0px 0px -3rem;
+    background: white;
+    font-size: 1.5rem;
+    color: black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.1s ease-in;
+    /* transition: all; */ }
+  .todolist__item {
+    padding: 0rem 0.5rem; }
+  .todolist__trash-btn, .todolist__complete-btn, .todolist__important-btn, .todolist__edit-btn {
+    background: rgba(0, 0, 0, 0.4);
+    color: #ffffff;
+    border: none;
+    padding: .5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 5px;
+    border-radius: 10px; }
+  .todolist__completed_btn {
+    text-decoration: line-through;
+    /* opacity: 0.5; */
+    color: #0bd4a2; }
+  .todolist__important_btn {
+    /* opacity: 0.5; */
+    color: red;
+    text-decoration: line-through; }
+  .todolist__edit-btn {
+    background-color: #993CF3; }
+  .todolist__important-btn {
+    background: #ff6f47; }
+  .todolist__complete-btn {
+    background: #0bd4a2; }
+  .todolist__single-task li {
+    flex: 1; }
 
-.fa-trash,
-.fa-check,
-.fa-exclamation-triangle {
-  pointer-events: none; }
-
-.fall {
-  opacity: 0; }
-
-/* Popup Open*/
-/* Overlay Styles */
 .overlay {
   background: rgba(0, 0, 0, 0.8);
   opacity: 0.8;
@@ -125,45 +84,45 @@ body {
   .popup__inner {
     position: relative;
     padding: 1em; }
-    .popup__inner__title {
-      text-align: center; }
-    .popup__inner__closebtn {
-      position: absolute;
-      top: -0.5em;
-      right: -0.5em;
-      background: black;
-      border: solid 2px white;
-      color: white;
-      cursor: pointer;
-      border-radius: 15px;
-      outline: none; }
-    .popup__inner__input-tasks__input-name-date {
-      margin: 17px 60px;
-      width: 355px;
-      height: 30px;
-      padding: 25px;
-      border-radius: 5px;
-      border: 1.5px solid;
-      border-radius: 5px;
-      padding-left: 10px;
+  .popup__title {
+    text-align: center; }
+  .popup__closebtn {
+    position: absolute;
+    top: -0.5em;
+    right: -0.5em;
+    background: black;
+    border: solid 2px white;
+    color: white;
+    cursor: pointer;
+    border-radius: 15px;
+    outline: none; }
+  .popup__input-name-date {
+    margin: 17px 60px;
+    width: 355px;
+    height: 30px;
+    padding: 25px;
+    border-radius: 5px;
+    border: 1.5px solid;
+    border-radius: 5px;
+    padding-left: 10px;
+    box-shadow: 4px 3px 5px #ccc; }
+  .popup__add-save-btn {
+    width: 125px;
+    height: 100%;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    background: #993CF3;
+    border-radius: 5px;
+    margin-left: 20px; }
+    .popup__add-save-btn:hover {
+      background: #7a30c2;
+      color: #ffffff;
       box-shadow: 4px 3px 5px #ccc; }
-    .popup__inner__btn-tasks__add-save-btn {
-      width: 125px;
-      height: 100%;
-      color: #fff;
-      background: #993CF3;
-      border: none;
-      padding: 10px;
-      border-radius: 5px;
-      margin-left: 20px; }
-      .popup__inner__btn-tasks__add-save-btn:hover {
-        background: #7a30c2;
-        color: #ffffff;
-        box-shadow: 4px 3px 5px #ccc; }
-    .popup__inner__btn-tasks__savetodo-btn {
-      background-color: #5cb85c; }
-      .popup__inner__btn-tasks__savetodo-btn:hover {
-        background-color: #5cb85c; }
+  .popup__savetodo-btn {
+    background: #198754; }
+    .popup__savetodo-btn:hover {
+      background: #198754; }
 
 /* Open popup button for add Task */
 .add__taskbtn {
@@ -175,5 +134,38 @@ body {
   margin-top: 11px;
   border-radius: 10px;
   color: #fff; }
+
+.datefilter-task__from2to {
+  font-size: 20px;
+  /* margin-top: 3rem; */ }
+.datefilter-task__input {
+  padding: 10px;
+  font-size: 15px; }
+
+.selectfilter {
+  width: 50%;
+  margin: 1rem 1rem 1rem 9rem;
+  position: relative;
+  overflow: hidden; }
+  .selectfilter__todo {
+    color: #ff6f47;
+    cursor: pointer;
+    width: 100%;
+    border: 2px solid;
+    padding: .5rem;
+    border-radius: 10px;
+    width: 100%; }
+
+.todo__main-title {
+  text-align: center;
+  color: #000000; }
+
+.title__findyourtask {
+  margin: 18px 20px; }
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Lato" , sans-serif; }
 
 /*# sourceMappingURL=style.css.map */
