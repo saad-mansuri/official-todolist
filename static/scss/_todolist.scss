@@ -1,21 +1,21 @@
 .todolist {
+    float: left;
     margin-top: 30px;
     width: 100%;
-    float: left;
     padding: 10px 0px;
     box-shadow: 3px 3px 9px #ccc;
     background: #F5F5F5;
     &__innertitle {
+    margin: 20px 0px;
     text-align: center;
     font-size: 30px;
-    margin: 20px 0px;
     }
 
     &__wrap-tasks {
         display: flex;
+        padding: 0px 40px 0px 40px;
         justify-content: center;
         align-items: center;
-        padding: 0px 40px 0px 40px;
     }
 
     &__all-tasks {
@@ -24,16 +24,16 @@
     }
 
     &__single-task {
-    border-radius: 10px;
-    width: 110%;
+    display: flex;
+    transition: all 0.1s ease-in;
     margin: 12px 0px 0px -3rem;
+    width: 110%;
+    border-radius: 10px;
     background: white;
     font-size: 1.5rem;
-    color: black;
-    display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: all 0.1s ease-in;
+    color: black;
     // flex: 1;
     /* transition: all; */
     }
@@ -46,14 +46,14 @@
     &__complete-btn,
     &__important-btn,
     &__edit-btn {
-        background: rgba(0, 0, 0, 0.4);
-        color: #ffffff;
-        border: none;
+        margin: 5px;
         padding: .5rem;
+        border: none;
+        border-radius: 10px;
         cursor: pointer;
         font-size: 1rem;
-        margin: 5px;
-        border-radius: 10px;
+        background: rgba(0, 0, 0, 0.4);
+        color: #ffffff;
     }
 
     &__completed_btn {
@@ -64,8 +64,8 @@
 
     &__important_btn {
     /* opacity: 0.5; */
-    color: red;
     text-decoration: line-through;
+    color: red;
     }
 
     &__edit-btn {

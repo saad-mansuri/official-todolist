@@ -1,53 +1,53 @@
 .todolist {
+  float: left;
   margin-top: 30px;
   width: 100%;
-  float: left;
   padding: 10px 0px;
   box-shadow: 3px 3px 9px #ccc;
   background: #F5F5F5; }
   .todolist__innertitle {
+    margin: 20px 0px;
     text-align: center;
-    font-size: 30px;
-    margin: 20px 0px; }
+    font-size: 30px; }
   .todolist__wrap-tasks {
     display: flex;
+    padding: 0px 40px 0px 40px;
     justify-content: center;
-    align-items: center;
-    padding: 0px 40px 0px 40px; }
+    align-items: center; }
   .todolist__all-tasks {
     width: 100%;
     list-style: none; }
   .todolist__single-task {
-    border-radius: 10px;
-    width: 110%;
+    display: flex;
+    transition: all 0.1s ease-in;
     margin: 12px 0px 0px -3rem;
+    width: 110%;
+    border-radius: 10px;
     background: white;
     font-size: 1.5rem;
-    color: black;
-    display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: all 0.1s ease-in;
+    color: black;
     /* transition: all; */ }
   .todolist__item {
     padding: 0rem 0.5rem; }
   .todolist__trash-btn, .todolist__complete-btn, .todolist__important-btn, .todolist__edit-btn {
-    background: rgba(0, 0, 0, 0.4);
-    color: #ffffff;
-    border: none;
+    margin: 5px;
     padding: .5rem;
+    border: none;
+    border-radius: 10px;
     cursor: pointer;
     font-size: 1rem;
-    margin: 5px;
-    border-radius: 10px; }
+    background: rgba(0, 0, 0, 0.4);
+    color: #ffffff; }
   .todolist__completed_btn {
     text-decoration: line-through;
     /* opacity: 0.5; */
     color: #0bd4a2; }
   .todolist__important_btn {
     /* opacity: 0.5; */
-    color: red;
-    text-decoration: line-through; }
+    text-decoration: line-through;
+    color: red; }
   .todolist__edit-btn {
     background-color: #993CF3; }
   .todolist__important-btn {
@@ -58,29 +58,29 @@
     flex: 1; }
 
 .overlay {
-  background: rgba(0, 0, 0, 0.8);
-  opacity: 0.8;
-  filter: alpha(opacity=80);
   position: fixed;
   top: 0px;
   bottom: 0px;
   left: 0px;
   right: 0px;
-  z-index: 100; }
+  z-index: 100;
+  opacity: 0.8;
+  background: rgba(0, 0, 0, 0.8);
+  filter: alpha(opacity=80); }
 
 .popup {
-  background: white;
   position: fixed;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  width: 500px;
   z-index: 101;
-  height: 300px;
   margin: auto;
+  width: 500px;
+  height: 300px;
+  box-shadow: 3px 2px 5px #ccc;
   border-radius: 15px;
-  box-shadow: 3px 2px 5px #ccc; }
+  background: white; }
   .popup__inner {
     position: relative;
     padding: 1em; }
@@ -90,35 +90,34 @@
     position: absolute;
     top: -0.5em;
     right: -0.5em;
-    background: black;
-    border: solid 2px white;
-    color: white;
     cursor: pointer;
+    border: solid 2px white;
     border-radius: 15px;
-    outline: none; }
+    background: black;
+    outline: none;
+    color: white; }
   .popup__input-name-date {
     margin: 17px 60px;
+    box-shadow: 4px 3px 5px #ccc;
     width: 355px;
     height: 30px;
     padding: 25px;
-    border-radius: 5px;
-    border: 1.5px solid;
-    border-radius: 5px;
     padding-left: 10px;
-    box-shadow: 4px 3px 5px #ccc; }
+    border-radius: 5px;
+    border: 1.5px solid; }
   .popup__add-save-btn {
+    margin-left: 20px;
     width: 125px;
     height: 100%;
-    color: #fff;
-    border: none;
     padding: 10px;
-    background: #993CF3;
+    border: none;
     border-radius: 5px;
-    margin-left: 20px; }
+    background: #993CF3;
+    color: #fff; }
     .popup__add-save-btn:hover {
+      box-shadow: 4px 3px 5px #ccc;
       background: #7a30c2;
-      color: #ffffff;
-      box-shadow: 4px 3px 5px #ccc; }
+      color: #ffffff; }
   .popup__savetodo-btn {
     background: #198754; }
     .popup__savetodo-btn:hover {
@@ -126,13 +125,13 @@
 
 /* Open popup button for add Task */
 .add__taskbtn {
-  background: #993CF3;
+  margin-top: 11px;
   border: none;
   width: 200px;
   height: 50px;
-  cursor: pointer;
-  margin-top: 11px;
   border-radius: 10px;
+  cursor: pointer;
+  background: #993CF3;
   color: #fff; }
 
 .datefilter-task__from2to {
@@ -143,18 +142,17 @@
   font-size: 15px; }
 
 .selectfilter {
-  width: 50%;
-  margin: 1rem 1rem 1rem 9rem;
   position: relative;
-  overflow: hidden; }
+  overflow: hidden;
+  margin: 1rem 1rem 1rem 9rem;
+  width: 50%; }
   .selectfilter__todo {
-    color: #ff6f47;
-    cursor: pointer;
-    width: 100%;
     border: 2px solid;
-    padding: .5rem;
     border-radius: 10px;
-    width: 100%; }
+    width: 100%;
+    padding: .5rem;
+    cursor: pointer;
+    color: #ff6f47; }
 
 .todo__main-title {
   text-align: center;
