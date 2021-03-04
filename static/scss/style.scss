@@ -12,3 +12,8 @@ body {
     font-family: "Lato" , sans-serif;   
     // font-family: 'DotGothic16', sans-serif;
 }
+
+.fall{
+    opacity:0;
+    transform: translate(10rem) rotateY(20deg);
+}

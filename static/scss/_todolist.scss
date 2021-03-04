@@ -51,6 +51,7 @@
         border: none;
         border-radius: 10px;
         cursor: pointer;
+        height:40px;
         font-size: 1rem;
         background: rgba(0, 0, 0, 0.4);
         color: #ffffff;
@@ -58,12 +59,12 @@
 
     &__completed_btn {
     text-decoration: line-through;
-    /* opacity: 0.5; */
+    opacity: 0.5; 
     color: rgb(11, 212, 162);
     }
 
     &__important_btn {
-    /* opacity: 0.5; */
+    opacity: 0.5; 
     text-decoration: line-through;
     color: red;
     }

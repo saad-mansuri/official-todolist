@@ -1,18 +1,7 @@
-let taskName = document.getElementById("txtName")
-let taskDate = document.getElementById("txtDate")
-let addTask = document.getElementById("btnAddtask")
-let dispTask = document.getElementById("displayTask")
-const todoList = document.querySelector(".todolist__all-tasks");
-const filterOption = document.querySelector(".selectfilter__todo");
-const search_BTN = document.getElementById('searchTodo_');
+const todoList = document.querySelector(".todolist__all-tasks")
+const filterOption = document.querySelector(".selectfilter__todo")
+const search_BTN = $("#searchTodo_")
 let tasks = [];
-
-
-document.addEventListener("DOMContentLoaded", getTodos);
-todoList.addEventListener("click", deleteTodo);
-filterOption.addEventListener("click", filterTodo);
-
-
 
 function init() {
     // debugger;
@@ -50,104 +39,81 @@ function getCookie(cname) {
     return "";
 }
 
-addTask.addEventListener("click", addTodo)
-    // var index = ""
+    $("#btnAddtask").click(function(){addTodo()})
+    function addTodo(index){
+        var taskName = $("#txtName").val() 
+        var taskDate = $("#txtDate").val()
+        
+        var index = tasks.length;
+        tasks.push({ "id": index, "name": taskName, "date": taskDate });
+        // console.log(tasks)
+        
+        $(".todolist__all-tasks").append("<li class='todolist__single-task'></li>")
+        $(".todolist__single-task:last").text(taskName+ " " + taskDate)
+        $(".todolist__single-task:last").append("<button class='todolist__important-btn fa fa-edit' id='btnImp'>Important Task</button> <button class='todolist__edit-btn fa fa-edit' id='btnEdit'>Edit Task</button> <button class='todolist__complete-btn fas fa-check'>Complete Task</button> <button class='todolist__trash-btn fas fa-trash'>Remove Task</button>")
+        setCookie('todoList', tasks, 1);
+        popupClose()
+        // $("#txtName").val() = ""
+        // $("#txtDate").val() = ""
+        $(".todolist__edit-btn").click(function(){
+            popupOpen()
+            console.log("hello")
+            selectedTask = tasks[parseInt(index)];
+            console.log(selectedTask)   
+            $("#txtName").val(tasks[index]['name'])         
+            $("#txtDate").val(tasks[index]['date'])         
+            // $("#btnSavetask").css("display","block")
+            // $("#btnAddtask").css("display","none")
+            
+        })
 
-function addTodo() {
+        $(".todolist__complete-btn").click(function(){
+            $(this).parent().addClass("todolist__completed_btn")
+            $('.todolist__complete-btn').dblclick(function(){
+                $(this).parent().removeClass("todolist__completed_btn")
+            })
+        })
 
-    const todoDiv = document.createElement("div")
-    todoDiv.classList.add("todolist__single-task")
-
-    const newTodo = document.createElement("li")
-    newTodo.innerHTML = taskName.value + " " + taskDate.value;
-    var index = tasks.length;
-    tasks.push({ "id": index, "name": taskName.value, "date": taskDate.value });
-    console.log(tasks)
-
-    setCookie('todoList', tasks, 1);
-
-    newTodo.classList.add("todolist__item");
-    todoDiv.appendChild(newTodo);
-    taskName.value = "";
-    taskDate.value = "";
-
-
-    //Create Edit button
-    const editButton = document.createElement("button");
-    editButton.innerHTML = "<div class='fa fa-edit' onclick='editTask(\"" + index + "\")'> Edit Task </div>";
-    editButton.classList.add("todolist__edit-btn");
-    todoDiv.appendChild(editButton);
-
-    //Create impotant button
-    const impButton = document.createElement("button");
-    impButton.innerHTML = `<i class="fa fa-exclamation-triangle"> Important</i>`;
-    impButton.classList.add("todolist__important-btn");
-    todoDiv.appendChild(impButton);
-
-    //Create Completed Button
-    const completedButton = document.createElement("button");
-    completedButton.innerHTML = `<i class="fas fa-check"> Complete</i>`;
-    completedButton.classList.add("todolist__complete-btn");
-    todoDiv.appendChild(completedButton);
-
-    //Create trash button
-    const trashButton = document.createElement("button");
-    trashButton.innerHTML = `<i class="fas fa-trash"> Remove</i>`;
-    trashButton.classList.add("todolist__trash-btn");
-    todoDiv.appendChild(trashButton);
-
-    todoList.appendChild(todoDiv);
-    popupClose()
-}
-
-
+        $(".todolist__important-btn").click(function(){
+            $(this).parent().addClass("todolist__important_btn")
+            $('.todolist__important-btn').dblclick(function(){
+                $(this).parent().removeClass("todolist__important_btn")
+            })
+        })
+        
+        $(".todolist__trash-btn").click(function(){
+            
+            $(this).parent().addClass("fall")
+        })
+    }
 var selectedTask = ""
-
-function editTask(index) {
-    let btnSavetask = document.getElementById("btnSavetask");
-    let btnAddtask = document.getElementById("btnAddtask");
-    selectedTask = tasks[parseInt(index)];
-    console.log(selectedTask)
-
-    taskName.value = tasks[index]['name'];
-    taskDate.value = tasks[index]['date'];
-    btnAddtask.style.display = "none";
-    btnSavetask.style.display = "block";
-    popupOpen()
-}
-let btnSavetask = document.getElementById("btnSavetask");
-btnSavetask.addEventListener("click", onSaveTask);
-
-function onSaveTask() {
+$("#btnSavetask").click(function(){
+    // saveTask()
     saveTask({
         id: selectedTask,
-        name: taskName.value,
-        date: taskDate.value
+        name: $("$txtName").val(),
+        date: $("$txtDate").val()
     });
-    // setCookie("todoList", JSON.stringify(tasks))
-
-    // console.log(taskName.value + " " + taskDate.value)
     popupClose()
-}
-
+})
 function saveTask(taskData) {
     // alert("hello")
-
     if (!taskData) {
         return
     }
     for (let keys in tasks[taskData.id.id]) {
         if (keys == 'name' || keys == 'date') {
-            tasks[taskData.id.id].name = taskName.value
-            tasks[taskData.id.id].date = taskDate.value
+            tasks[taskData.id.id].name = $("$txtName").val()
+            tasks[taskData.id.id].date = $("$txtDate").val()
         }
     }
-    // setCookie("todoList", JSON.stringify(tasks))
-    setCookie("todoList", tasks)
-        // getCookie('todoList', JSON.parse(tasks))
+    // // setCookie("todoList", JSON.stringify(tasks))
+    // setCookie("todoList", tasks)
+    //     // getCookie('todoList', JSON.parse(tasks))
 
 }
 
+filterOption.addEventListener("click", filterTodo);
 function filterTodo(e) {
     const todos = todoList.childNodes;
     todos.forEach(function(todo) {
@@ -181,6 +147,9 @@ function filterTodo(e) {
     });
 }
 
+
+// $(".todolist__all-tasks").click(deleteTodo())
+todoList.addEventListener("click", deleteTodo);
 function deleteTodo(e) {
     const item = e.target;
 
@@ -198,117 +167,63 @@ function deleteTodo(e) {
     if (item.classList[0] === "todolist__complete-btn") {
         const todo = item.parentElement;
         todo.classList.toggle("todolist__completed_btn");
-        console.log(todo);
+        // console.log(todo);s
     }
 
     if (item.classList[0] === "todolist__important-btn") {
         const todo = item.parentElement;
         todo.classList.toggle("todolist__important_btn");
-        console.log(todo);
+        // console.log(todo);
     }
 }
 
+$(document).ready(getTodos())
+    function getTodos($t = []) {
+        // console.log(tasks)
+        $tasklist = []
+        if ($t.length > 0) {
+            todoList.innerHTML = ''
+            $tasklist = $t
+        } else {
+            $tasklist = tasks
+        }
+        
+        $tasklist.forEach(function(todo, index) {
+            $(".todolist__all-tasks").append("<li class='todolist__single-task'></li>")
+            $(".todolist__single-task:last").text(`${todo.name} ${todo.date}`)
+            $(".todolist__single-task:last").append("<button class='todolist__important-btn fa fa-edit' id='btnImp'>Important Task</button> <button class='todolist__edit-btn fa fa-edit' id='btnEdit'>Edit Task</button> <button class='todolist__complete-btn fas fa-check'>Complete Task</button> <button class='todolist__trash-btn fas fa-trash'>Remove Task</button>")
+            setCookie('todoList', tasks, 1);
+            popupClose()
+            $(".todolist__edit-btn").click(function(){
+                console.log("hello")
+                $("#txtName").val(tasks[index]['name'])
+                $("#txtDate").val(tasks[index]['date'])
+                $("#btnSavetask").css("display","block")
+                $("#btnAddtask").css("display","none")
+                popupOpen()
+            })
 
-function getTodos($t = []) {
-    // console.log(tasks)
-    $tasklist = []
-    if ($t.length > 0) {
-        todoList.innerHTML = ''
-        $tasklist = $t
-    } else {
-        $tasklist = tasks
+
+            $(".todolist__complete-btn").click(function(){
+                // $(this).parent().addClass("todolist__completed_btn")
+                // $('.todolist__complete-btn').dblclick(function(){
+                //     $(this).parent().removeClass("todolist__completed_btn")
+                // })
+            })
+            $(".todolist__important-btn").click(function(){
+                // $(this).parent().addClass("todolist__completed_btn")
+                // $('.todolist__complete-btn').dblclick(function(){
+                //     $(this).parent().removeClass("todolist__completed_btn")
+                // })
+            })
+
+            $(".todolist__trash-btn").click(function(){
+                $(this).parent().addClass("fall")
+            })
+        });
     }
 
 
-    $tasklist.forEach(function(todo, index) {
-        const todoDiv = document.createElement("li")
-        todoDiv.classList.add("todolist__single-task")
-
-        const newTodo = document.createElement("li")
-
-        newTodo.innerHTML = `${todo.name} ${todo.date}`
-        newTodo.classList.add("todolist__item")
-
-        todoDiv.appendChild(newTodo)
-        taskName.value = ""
-        taskDate.value = ""
-
-
-        //Create Edit Button
-        const editButton = document.createElement("button")
-        editButton.innerHTML = `<div class="fa fa-edit" onclick="editTask(${index})"> Edit Task</div>`
-        editButton.classList.add("todolist__edit-btn")
-        todoDiv.appendChild(editButton)
-
-        //Create important Button
-        const impButton = document.createElement("button");
-        impButton.innerHTML = `<i class="fa fa-exclamation-triangle"> Important</i>`;
-        impButton.classList.add("todolist__important-btn");
-        todoDiv.appendChild(impButton);
-
-        //Create Completed Button
-        const completedButton = document.createElement("button");
-        completedButton.innerHTML = `<i class="fas fa-check"> Complete</i>`;
-        completedButton.classList.add("todolist__complete-btn");
-        todoDiv.appendChild(completedButton);
-
-        //Create trash button
-        const trashButton = document.createElement("button");
-        trashButton.innerHTML = `<i class="fas fa-trash"> Remove</i>`;
-        trashButton.classList.add("todolist__trash-btn");
-        todoDiv.appendChild(trashButton);
-
-        todoList.appendChild(todoDiv);
-        console.log(taskName.value + taskDate.value)
-
-    });
-}
-
-
-
-
-function getDifference(date1, date2) {
-    $date1 = new Date(date1)
-    $date2 = new Date(date2)
-
-    return Math.ceil(Math.abs($date2 - $date1) / (1000 * 60 * 60 * 24))
-}
-
-searchTodo_.addEventListener('click', filter_datewise)
-
-function filter_datewise() {
-    $datefrom = document.getElementById('fromDate').value
-    $dateto = document.getElementById('toDate').value
-    $dateRange = [$datefrom]
-    $diff = getDifference($datefrom, $dateto)
-
-    for (let i = 1; i <= $diff; i++) {
-
-        $dateToInc = new Date($datefrom)
-        $dateConverted = new Date($dateToInc.setDate($dateToInc.getDate() + i))
-
-        $dateUpdate = $dateConverted.getDate() >= 10 ? $dateConverted.getDate() : `0${$dateConverted.getDate()}`
-        $monthUpdate = $dateConverted.getMonth() + 1 >= 10 ? $dateConverted.getMonth() + 1 : `0${$dateConverted.getMonth() + 1}`
-
-        $createddate = `${$dateConverted.getFullYear()}-${$monthUpdate}-${$dateUpdate}`
-        $dateRange.push($createddate)
-    }
-    console.log($dateRange)
-
-    $data = JSON.parse(getCookie('todoList'));
-
-    console.log($data)
-    console.log($dateRange)
-    todoFindList = []
-    $dateRange.forEach(daterange => {
-        $data.forEach(taskdict => {
-            if (taskdict.date == daterange) {
-                todoFindList.push(taskdict)
-            }
-        })
-    })
-    getTodos(todoFindList)
-}
 
 let searchtextbox = document.getElementById("searchtextbox");
 searchtextbox.addEventListener("input", function() {
@@ -330,11 +245,11 @@ searchtextbox.addEventListener("input", function() {
 
 // Popup Open
 function popupOpen() {
-    document.getElementById("popup").style.display = "block";
-    document.getElementById("overlay").style.display = "block";
+    $("#popup").css("display", "block")
+    $("#overlay").css("display", "block")
 }
 // Popup Close
 function popupClose() {
-    document.getElementById("popup").style.display = "none";
-    document.getElementById("overlay").style.display = "none";
+    $("#popup").css("display", "none")
+    $("#overlay").css("display", "none")
 }
